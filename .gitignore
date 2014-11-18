@@ -30,6 +30,8 @@
 
 # Class files
 *.class
+.classpath
+
 
 # Eclipse files
 bin

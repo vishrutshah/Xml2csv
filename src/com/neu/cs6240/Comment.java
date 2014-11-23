@@ -79,7 +79,7 @@ public class Comment implements Writable {
 		if(data == null || data.isEmpty()){
 			return data;
 		}
-		return data.replaceAll("(\\r|\\n|\\r\\n|,)+", "");
+		return data.replaceAll("(\\r|\\n|\\r\\n|,|\"|')+", "");
 	}
 	
 	public String toCsv(){

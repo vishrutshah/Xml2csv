@@ -139,7 +139,7 @@ public class Xml2csvPosts {
 		job.setOutputKeyClass(IntWritable.class);
 		job.setOutputValueClass(Text.class);
 		// Set as per your file size
-		job.setNumReduceTasks(10);
+		job.setNumReduceTasks(15);
 		FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 		FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
 		System.exit(job.waitForCompletion(true) ? 0 : 1);

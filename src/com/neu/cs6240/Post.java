@@ -18,6 +18,8 @@ public class Post implements Writable {
 	Text id;
 	// PostTypeId; Question = 1, Answer = 2
 	Text postTypeId;
+	// If the postType is answer then it has a parent Id
+	Text parentId;
 	// Ans Id that has been Accepted as correct answer
 	Text acceptedAnswerId;
 	// Creation Date for this post whether its a question / answer
@@ -57,6 +59,7 @@ public class Post implements Writable {
 		Element eElement = (Element) nList.item(0);
 		this.id = new Text(eElement.getAttribute("Id"));
 		this.postTypeId = new Text(eElement.getAttribute("PostTypeId"));
+		this.parentId = new Text(eElement.getAttribute("ParentId"));
 		this.acceptedAnswerId = new Text(eElement.getAttribute("AcceptedAnswerId"));
 		this.creationDate = new Text(eElement.getAttribute("CreationDate"));
 		this.score = new Text(eElement.getAttribute("Score"));
@@ -87,6 +90,7 @@ public class Post implements Writable {
 	public void write(DataOutput out) throws IOException {
 		this.id.write(out);
 		this.postTypeId.write(out);
+		this.parentId.write(out);
 		this.acceptedAnswerId.write(out);
 		this.creationDate.write(out);
 		this.score.write(out);
@@ -110,6 +114,7 @@ public class Post implements Writable {
 	public void readFields(DataInput in) throws IOException {
 		this.id.readFields(in);
 		this.postTypeId.readFields(in);
+		this.parentId.readFields(in);
 		this.acceptedAnswerId.readFields(in);
 		this.creationDate.readFields(in);
 		this.score.readFields(in);
@@ -153,7 +158,7 @@ public class Post implements Writable {
 		output.append(this.favoriteCount.toString()).append(",");		
 		output.append(this.communityOwnedDate.toString()).append(",");
 		output.append(this.title.toString()).append(",");
-		output.append(this.body.toString());
+		output.append(this.parentId.toString());
 		
 		return output.toString();
 	}
